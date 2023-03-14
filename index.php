@@ -32,6 +32,7 @@ error_reporting(E_ALL);
             background-color: black;
             color: white;
             font-weight: bold;
+            cursor: pointer;
         }
         th, td{
             padding: 15px;
@@ -51,14 +52,14 @@ error_reporting(E_ALL);
     $family = new Family();
     $families = $family->getData();
     ?>
-    <table>
+    <table id="myTable">
         <thead>
         <tr>
-            <th>SURNAME</th>
-            <th>#MEMBERS</th>
-            <th>FATHER</th>
-            <th>MAXAGE</th>
-            <th>CHILDREN</th>
+            <th onclick="sortData(0)">SURNAME</th>
+            <th onclick="sortData(1)">#MEMBERS</th>
+            <th onclick="sortData(2)">FATHER</th>
+            <th onclick="sortData(3)">MAXAGE</th>
+            <th onclick="sortData(4)">CHILDREN</th>
         </tr>
         </thead>
         <tbody>
@@ -67,7 +68,7 @@ error_reporting(E_ALL);
         foreach ($families as $family){
             $total_members += $family['members'];
         ?>
-        <tr>
+        <tr class="sortable">
             <td><?php echo $family['surname']; ?></td>
             <td><?php echo $family['members']; ?></td>
             <td><?php echo $family['father']; ?></td>
@@ -77,13 +78,64 @@ error_reporting(E_ALL);
         <?php
         }
         ?>
-        <tr>
-            <td class="total-box" colspan="4"> Total Members</td>
-            <td colspan="1"><?php echo $total_members; ?></td>
-        </tr>
         </tbody>
+        <tfoot>
+            <tr>
+                <td class="total-box" colspan="4"> Total Members</td>
+                <td colspan="1"><?php echo $total_members; ?></td>
+            </tr>
+        </tfoot>
     </table>
 
 </div>
 </body>
+<script>
+    function sortData(n) {
+        var table,
+            rows,
+            switching,
+            i,
+            x,
+            y,
+            shouldSwitch,
+            dir,
+            switchcount = 0;
+        table = document.getElementById("myTable");
+        switching = true;
+        dir = "asc";
+        /*Make a loop that will continue until
+        no switching has been done:*/
+        while (switching) {
+            switching = false;
+            rows = table.getElementsByClassName("sortable");
+
+            for (i = 0; i < rows.length - 1; i++) {
+                shouldSwitch = false;
+                x = rows[i].getElementsByTagName("TD")[n];
+                y = rows[i + 1].getElementsByTagName("TD")[n];
+                if (dir == "asc") {
+                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                } else if (dir == "desc") {
+                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+            }
+            if (shouldSwitch) {
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+                switchcount++;
+            } else {
+                if (switchcount == 0 && dir == "asc") {
+                    dir = "desc";
+                    switching = true;
+                }
+            }
+        }
+    }
+</script>
 </html>
