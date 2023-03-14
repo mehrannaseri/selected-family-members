@@ -15,7 +15,7 @@ for installation and run this project :
 
 3 : copy ```.env.example``` on your ```.env``` file and modify your ```.env``` file for database connection.
 
-4: create a database and import ```family_members.sql```.
+4: create a database and import ```family_members.sql``` and insert your data.
 
 5: run ```php -S localhost:8000``` on project root.
 
