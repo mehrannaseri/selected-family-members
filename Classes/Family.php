@@ -11,7 +11,10 @@ class Family
         $this->connection = DB::getInstance();
     }
 
-    public function getData()
+    /**
+     * @return array|false
+     */
+    public function getData() :array
     {
        $sql = $this->connection->prepare("SELECT ID,surname,count(first_name) as members, MAX(age) as max_age,
                                     (select first_name from families where surname = f.surname and gender = 'male' and legal_guardian = 1) as father,
