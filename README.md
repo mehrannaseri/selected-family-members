@@ -21,6 +21,8 @@ for installation and run this project :
 
 6: open ```localhost:8000``` on your browser.
 
+<b>Note:</b> You can sort all columns by click on heading
+
 
 Thats it
 
