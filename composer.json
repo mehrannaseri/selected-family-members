@@ -3,7 +3,6 @@
     "description": "simple read data from database and show on table",
     "autoload": {
         "psr-4": {
-            "Selected\\Task2\\": "src/"
         }
     },
     "authors": [
