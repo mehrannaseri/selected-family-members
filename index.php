@@ -82,7 +82,7 @@ error_reporting(E_ALL);
         <tfoot>
             <tr>
                 <td class="total-box" colspan="4"> Total Members</td>
-                <td colspan="1"><?php echo $total_members; ?></td>
+                <td class="total-box" colspan="1"><?php echo $total_members; ?></td>
             </tr>
         </tfoot>
     </table>
