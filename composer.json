@@ -1,0 +1,16 @@
+{
+    "name": "selected/task2",
+    "description": "simple read data from database and show on table",
+    "autoload": {
+        "psr-4": {
+            "Selected\\Task2\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "mehran",
+            "email": "mehran.naseri2013@gmail.com"
+        }
+    ],
+    "require": {}
+}
